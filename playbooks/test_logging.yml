@@ -1,0 +1,69 @@
+---
+- name: Test Playbook - Logging vers Kibana
+  hosts: local
+  gather_facts: yes
+  
+  tasks:
+    - name: Afficher un message de bienvenue
+      debug:
+        msg: "Bienvenue dans le lab Ansible + ELK !"
+    
+    - name: Créer un fichier temporaire
+      file:
+        path: /tmp/ansible-test-{{ ansible_date_time.epoch }}
+        state: touch
+      register: file_creation
+    
+    - name: Afficher le résultat de création
+      debug:
+        var: file_creation
+    
+    - name: Exécuter une commande simple
+      command: echo "Test command execution"
+      register: command_output
+      changed_when: false
+    
+    - name: Afficher la sortie de la commande
+      debug:
+        msg: "Command output: {{ command_output.stdout }}"
+    
+    - name: Vérifier la présence d'un package
+      package_facts:
+        manager: auto
+    
+    - name: Task conditionnelle (sera skippée)
+      debug:
+        msg: "Cette task sera skippée"
+      when: false
+    
+    - name: Simuler une task avec changement
+      copy:
+        content: "Test content - {{ ansible_date_time.iso8601 }}"
+        dest: /tmp/ansible-test-content.txt
+      register: copy_result
+    
+    - name: Afficher les stats
+      debug:
+        msg: "Playbook terminé avec succès !"
+
+- name: Second Play - Tests sur webservers
+  hosts: webservers
+  gather_facts: no
+  
+  tasks:
+    - name: Ping les webservers
+      ping:
+    
+    - name: Créer un répertoire
+      file:
+        path: /tmp/webserver-test
+        state: directory
+        mode: '0755'
+    
+    - name: Écrire un fichier de configuration
+      copy:
+        content: |
+          # Configuration test
+          server_name: {{ inventory_hostname }}
+          timestamp: {{ ansible_date_time.iso8601 }}
+        dest: /tmp/webserver-test/config.txt

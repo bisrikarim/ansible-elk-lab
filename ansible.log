@@ -1,0 +1,97 @@
+2025-10-22 16:14:41,338 p=6466 u=kbisri1 n=ansible INFO| [DEPRECATION WARNING]: community.general.yaml has been deprecated. The plugin has been superseded by the option `result_format=yaml` in callback plugin ansible.builtin.default from ansible-core 2.13 onwards. This feature will be removed from community.general in 
+version 12.0.0. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+2025-10-22 16:14:42,540 p=6466 u=kbisri1 n=ansible INFO| [Elasticsearch] Playbook started: playbooks/test_logging.yml
+2025-10-22 16:14:42,541 p=6466 u=kbisri1 n=ansible INFO| PLAY [Test Playbook - Logging vers Kibana] *****************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:42,806 p=6466 u=kbisri1 n=ansible INFO| TASK [Gathering Facts] *************************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:45,936 p=6466 u=kbisri1 n=ansible WARNING| [WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /home/kbisri1/ansible-elk-lab/venv/bin/python3.12, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-10-22 16:14:45,936 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost]
+2025-10-22 16:14:46,204 p=6466 u=kbisri1 n=ansible INFO| TASK [Afficher un message de bienvenue] ********************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:46,234 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost] => 
+  msg: Bienvenue dans le lab Ansible + ELK !
+2025-10-22 16:14:46,471 p=6466 u=kbisri1 n=ansible INFO| TASK [Créer un fichier temporaire] *************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:46,725 p=6466 u=kbisri1 n=ansible INFO| changed: [localhost]
+2025-10-22 16:14:46,755 p=6466 u=kbisri1 n=ansible INFO| TASK [Afficher le résultat de création] ********************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:46,784 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost] => 
+  file_creation:
+    changed: true
+    dest: /tmp/ansible-test-1761146085
+    diff:
+      after:
+        atime: 1761146086.7095585
+        mtime: 1761146086.7095585
+        path: /tmp/ansible-test-1761146085
+        state: touch
+      before:
+        atime: 1761146086.7048862
+        mtime: 1761146086.7048862
+        path: /tmp/ansible-test-1761146085
+        state: absent
+    failed: false
+    gid: 1000
+    group: kbisri1
+    mode: '0644'
+    owner: kbisri1
+    size: 0
+    state: file
+    uid: 1000
+2025-10-22 16:14:46,808 p=6466 u=kbisri1 n=ansible INFO| TASK [Exécuter une commande simple] ************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:47,048 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost]
+2025-10-22 16:14:47,360 p=6466 u=kbisri1 n=ansible INFO| TASK [Afficher la sortie de la commande] *******************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:47,393 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost] => 
+  msg: 'Command output: Test command execution'
+2025-10-22 16:14:47,413 p=6466 u=kbisri1 n=ansible INFO| TASK [Vérifier la présence d'un package] *******************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:49,223 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost]
+2025-10-22 16:14:49,272 p=6466 u=kbisri1 n=ansible INFO| TASK [Task conditionnelle (sera skippée)] ******************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:49,296 p=6466 u=kbisri1 n=ansible INFO| skipping: [localhost]
+2025-10-22 16:14:49,332 p=6466 u=kbisri1 n=ansible INFO| TASK [Simuler une task avec changement] ********************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:49,796 p=6466 u=kbisri1 n=ansible INFO| changed: [localhost]
+2025-10-22 16:14:49,836 p=6466 u=kbisri1 n=ansible INFO| TASK [Afficher les stats] **********************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:49,865 p=6466 u=kbisri1 n=ansible INFO| ok: [localhost] => 
+  msg: Playbook terminé avec succès !
+2025-10-22 16:14:49,884 p=6466 u=kbisri1 n=ansible INFO| PLAY [Second Play - Tests sur webservers] ******************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:49,901 p=6466 u=kbisri1 n=ansible INFO| TASK [Ping les webservers] *********************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:50,297 p=6466 u=kbisri1 n=ansible WARNING| [WARNING]: Platform linux on host web2 is using the discovered Python interpreter at /home/kbisri1/ansible-elk-lab/venv/bin/python3.12, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-10-22 16:14:50,297 p=6466 u=kbisri1 n=ansible INFO| ok: [web2]
+2025-10-22 16:14:50,329 p=6466 u=kbisri1 n=ansible WARNING| [WARNING]: Platform linux on host web1 is using the discovered Python interpreter at /home/kbisri1/ansible-elk-lab/venv/bin/python3.12, but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-10-22 16:14:50,329 p=6466 u=kbisri1 n=ansible INFO| ok: [web1]
+2025-10-22 16:14:50,344 p=6466 u=kbisri1 n=ansible INFO| TASK [Créer un répertoire] *********************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:50,557 p=6466 u=kbisri1 n=ansible INFO| changed: [web1]
+2025-10-22 16:14:50,586 p=6466 u=kbisri1 n=ansible INFO| ok: [web2]
+2025-10-22 16:14:50,604 p=6466 u=kbisri1 n=ansible INFO| TASK [Écrire un fichier de configuration] ******************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:50,639 p=6466 u=kbisri1 n=ansible INFO| fatal: [web1]: FAILED! => 
+  msg: |-
+    The task includes an option with an undefined variable.. 'ansible_date_time' is undefined
+  
+    The error appears to be in '/home/kbisri1/ansible-elk-lab/playbooks/test_logging.yml': line 63, column 7, but may
+    be elsewhere in the file depending on the exact syntax problem.
+  
+    The offending line appears to be:
+  
+  
+        - name: Écrire un fichier de configuration
+          ^ here
+2025-10-22 16:14:50,961 p=6466 u=kbisri1 n=ansible WARNING| [WARNING]: [Elasticsearch] Task failed: Écrire un fichier de configuration
+
+2025-10-22 16:14:50,962 p=6466 u=kbisri1 n=ansible INFO| fatal: [web2]: FAILED! => 
+  msg: |-
+    The task includes an option with an undefined variable.. 'ansible_date_time' is undefined
+  
+    The error appears to be in '/home/kbisri1/ansible-elk-lab/playbooks/test_logging.yml': line 63, column 7, but may
+    be elsewhere in the file depending on the exact syntax problem.
+  
+    The offending line appears to be:
+  
+  
+        - name: Écrire un fichier de configuration
+          ^ here
+2025-10-22 16:14:50,979 p=6466 u=kbisri1 n=ansible INFO| PLAY RECAP *************************************************************************************************************************************************************************************************************************************************************
+2025-10-22 16:14:50,980 p=6466 u=kbisri1 n=ansible INFO| localhost                  : ok=9    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-10-22 16:14:50,980 p=6466 u=kbisri1 n=ansible INFO| web1                       : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-10-22 16:14:50,980 p=6466 u=kbisri1 n=ansible INFO| web2                       : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-10-22 16:14:51,333 p=6466 u=kbisri1 n=ansible INFO| [Elasticsearch] Playbook completed in 9.60s
