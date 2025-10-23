@@ -1,0 +1,9 @@
+version: 3
+dependencies:
+  python_interpreter:
+    package_system: python3.11
+  python:
+    - requests
+images:
+  base_image:
+    name: quay.io/ansible/ansible-runner:latest
