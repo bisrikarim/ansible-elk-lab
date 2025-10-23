@@ -4,6 +4,10 @@
   gather_facts: yes
   
   tasks:
+    - name: Wait to inspect runtime
+      pause:
+        seconds: 60
+        
     - name: Afficher un message de bienvenue
       debug:
         msg: "Bienvenue dans le lab Ansible + ELK !"
