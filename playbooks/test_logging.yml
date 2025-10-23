@@ -47,13 +47,10 @@
         msg: "Playbook terminé avec succès !"
 
 - name: Second Play - Tests sur webservers
-  hosts: webservers
-  gather_facts: no
+  hosts: local
+  gather_facts: yes
   
   tasks:
-    - name: Ping les webservers
-      ping:
-    
     - name: Créer un répertoire
       file:
         path: /tmp/webserver-test
