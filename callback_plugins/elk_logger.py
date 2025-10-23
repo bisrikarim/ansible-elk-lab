@@ -3,8 +3,8 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = '''
-name: elasticsearch
-callback_type: notification
+callback: elk_logger
+type: notification
 requirements:
     - requests (pip install requests)
 short_description: Send Ansible logs to Elasticsearch
@@ -59,6 +59,8 @@ class CallbackModule(CallbackBase):
     CALLBACK_TYPE = 'notification'
     CALLBACK_NAME = 'elk_logger'
     CALLBACK_NEEDS_ENABLED = True
+    CALLBACK_NEEDS_WHITELIST = True
+
 
     def __init__(self):
         super(CallbackModule, self).__init__()
