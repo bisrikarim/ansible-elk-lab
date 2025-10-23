@@ -1,6 +1,6 @@
 ---
 - name: Test Playbook - Logging vers Kibana
-  hosts: local
+  hosts: all
   gather_facts: yes
   
   tasks:
@@ -47,7 +47,7 @@
         msg: "Playbook terminé avec succès !"
 
 - name: Second Play - Tests sur webservers
-  hosts: local
+  hosts: all
   gather_facts: yes
   
   tasks:
