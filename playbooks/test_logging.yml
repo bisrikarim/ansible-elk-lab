@@ -6,8 +6,8 @@
   tasks:
     - name: Wait to inspect runtime
       pause:
-        seconds: 60
-        
+        seconds: 90
+
     - name: Afficher un message de bienvenue
       debug:
         msg: "Bienvenue dans le lab Ansible + ELK !"
