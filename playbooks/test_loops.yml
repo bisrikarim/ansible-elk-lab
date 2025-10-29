@@ -1,0 +1,50 @@
+---
+- name: Test avec boucles
+  hosts: localhost
+  gather_facts: no
+  
+  tasks:
+    - name: Créer plusieurs fichiers
+      copy:
+        content: "Fichier numéro {{ item }}"
+        dest: "/tmp/file_{{ item }}.txt"
+      loop:
+        - 1
+        - 2
+        - 3
+    
+    - name: Vérifier les fichiers créés
+      stat:
+        path: "/tmp/file_{{ item }}.txt"
+      loop:
+        - 1
+        - 2
+        - 3
+      register: files_status
+    
+    - name: Afficher les résultats
+      debug:
+        msg: "Fichier {{ item.item }}: {{ 'existe' if item.stat.exists else 'manquant' }}"
+      loop: "{{ files_status.results }}"
+    
+    - name: Liste de serveurs fictifs
+      debug:
+        msg: "Traitement du serveur {{ item.name }} ({{ item.ip }})"
+      loop:
+        - { name: "web1", ip: "10.0.0.1" }
+        - { name: "web2", ip: "10.0.0.2" }
+        - { name: "db1", ip: "10.0.0.10" }
+    
+    - name: Nettoyer les fichiers de test
+      file:
+        path: "/tmp/file_{{ item }}.txt"
+        state: absent
+      loop:
+        - 1
+        - 2
+        - 3
+    
+    - name: Fin du test de boucles
+      debug:
+        msg: "✅ Test de boucles terminé"
+

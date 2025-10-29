@@ -1,0 +1,61 @@
+---
+- name: Test avec variables et conditions
+  hosts: localhost
+  gather_facts: yes
+  
+  vars:
+    env: "production"
+    app_name: "mon-application"
+    version: "1.2.3"
+    ports:
+      - 8080
+      - 8443
+    config:
+      debug: false
+      timeout: 30
+  
+  tasks:
+    - name: Afficher les variables
+      debug:
+        msg: |
+          Application: {{ app_name }}
+          Version: {{ version }}
+          Environnement: {{ env }}
+          Debug: {{ config.debug }}
+    
+    - name: Condition sur l'environnement (production)
+      debug:
+        msg: "Mode PRODUCTION détecté"
+      when: env == "production"
+    
+    - name: Condition sur l'environnement (dev)
+      debug:
+        msg: "Mode DEV détecté"
+      when: env == "dev"
+    
+    - name: Boucle sur les ports
+      debug:
+        msg: "Port configuré: {{ item }}"
+      loop: "{{ ports }}"
+    
+    - name: Tâche conditionnelle sur debug
+      debug:
+        msg: "Le mode debug est activé"
+      when: config.debug | bool
+    
+    - name: Tâche conditionnelle sur debug (inversé)
+      debug:
+        msg: "Le mode debug est désactivé"
+      when: not config.debug | bool
+    
+    - name: Afficher des facts système
+      debug:
+        msg: |
+          OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Hostname: {{ ansible_hostname }}
+          Python: {{ ansible_python_version }}
+    
+    - name: Fin du test de variables
+      debug:
+        msg: "✅ Test de variables terminé"
+

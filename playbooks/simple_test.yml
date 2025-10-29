@@ -1,0 +1,41 @@
+---
+- name: Simple Test - Logging rapide
+  hosts: localhost
+  gather_facts: no
+  
+  tasks:
+    - name: Message de démarrage
+      debug:
+        msg: "Début du test simple"
+    
+    - name: Créer un fichier de test
+      copy:
+        content: "Test {{ ansible_date_time.iso8601 }}"
+        dest: /tmp/test-simple.txt
+    
+    - name: Lire le fichier
+      command: cat /tmp/test-simple.txt
+      register: file_content
+      changed_when: false
+    
+    - name: Afficher le contenu
+      debug:
+        msg: "Contenu: {{ file_content.stdout }}"
+    
+    - name: Task qui sera skippée
+      debug:
+        msg: "Je ne m'afficherai pas"
+      when: false
+    
+    - name: Calculer un résultat
+      set_fact:
+        resultat: "{{ 10 + 5 }}"
+    
+    - name: Afficher le résultat
+      debug:
+        msg: "Le résultat est {{ resultat }}"
+    
+    - name: Message de fin
+      debug:
+        msg: "✅ Test terminé avec succès"
+
