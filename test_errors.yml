@@ -1,0 +1,33 @@
+---
+- name: Test avec erreurs volontaires
+  hosts: localhost
+  gather_facts: yes
+  ignore_errors: yes
+  
+  tasks:
+    - name: Tâche qui réussit
+      debug:
+        msg: "Cette tâche fonctionne bien"
+    
+    - name: Tâche qui échoue (fichier inexistant)
+      command: cat /tmp/fichier_inexistant.txt
+      ignore_errors: yes
+      register: failed_task
+    
+    - name: Afficher l'erreur
+      debug:
+        msg: "L'erreur était attendue: {{ failed_task.stderr | default('N/A') }}"
+    
+    - name: Tâche conditionnelle OK
+      debug:
+        msg: "Je continue malgré l'erreur précédente"
+    
+    - name: Créer un fichier valide
+      copy:
+        content: "Fichier de récupération"
+        dest: /tmp/recovery.txt
+    
+    - name: Fin du test d'erreurs
+      debug:
+        msg: "✅ Test d'erreurs terminé"
+
